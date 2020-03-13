@@ -11,13 +11,18 @@ LocalCameraStreamParameters::LocalCameraStreamParameters(bool audio_enabled,
       resolution_height_(240),
       fps_(30),
       video_enabled_(video_enabled),
-      audio_enabled_(audio_enabled) {
+      audio_enabled_(audio_enabled),
+      isDownScaleEnalbe_(true){
   std::random_device rd;
   std::string random_number = std::to_string(rd());
   stream_name_ = "OWT-Stream-" + random_number;
 }
 void LocalCameraStreamParameters::Fps(int fps) {
   fps_ = fps;
+}
+void LocalCameraStreamParameters::SetDownScaleEnalbe(bool enable)
+{//plus added
+    isDownScaleEnalbe_ = enable;
 }
 void LocalCameraStreamParameters::CameraId(const std::string& camera_id) {
   camera_id_ = camera_id;

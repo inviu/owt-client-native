@@ -16,6 +16,7 @@
 #include "api/video/i420_buffer.h"
 #include "api/video/video_frame_buffer.h"
 #include "api/video/video_rotation.h"
+#include "rtc_base/logging.h"
 
 // This file is borrowed from webrtc project
 namespace owt {
@@ -34,6 +35,12 @@ void CameraVideoCapturer::OnFrame(const webrtc::VideoFrame& frame) {
           &cropped_width, &cropped_height, &out_width, &out_height)) {
     // Drop frame in order to respect frame rate constraint.
     return;
+  }
+
+  if (!isDownScaleEnalbe_)//plus added
+  {
+      out_height = frame.height();
+      out_width  = frame.width();
   }
 
   if (out_height != frame.height() || out_width != frame.width()) {
@@ -69,6 +76,11 @@ void CameraVideoCapturer::RemoveSink(
     rtc::VideoSinkInterface<webrtc::VideoFrame>* sink) {
   broadcaster_.RemoveSink(sink);
   UpdateVideoAdapter();
+}
+
+void CameraVideoCapturer::SetDownScaleEnalbe(bool enable)//plus added
+{
+    isDownScaleEnalbe_ = enable;
 }
 
 void CameraVideoCapturer::UpdateVideoAdapter() {

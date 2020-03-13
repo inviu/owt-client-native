@@ -32,6 +32,7 @@ class CameraVideoCapturer : public rtc::VideoSourceInterface<webrtc::VideoFrame>
                        const rtc::VideoSinkWants& wants) override;
   void RemoveSink(rtc::VideoSinkInterface<webrtc::VideoFrame>* sink) override;
 
+  void SetDownScaleEnalbe(bool enable);//plus added
  protected:
   void OnFrame(const webrtc::VideoFrame& frame);
   rtc::VideoSinkWants GetSinkWants();
@@ -41,6 +42,9 @@ class CameraVideoCapturer : public rtc::VideoSourceInterface<webrtc::VideoFrame>
 
   rtc::VideoBroadcaster broadcaster_;
   cricket::VideoAdapter video_adapter_;
+
+  //plus added
+  bool isDownScaleEnalbe_;
 };
 }  // namespace base
 }  // namespace owt
