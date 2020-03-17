@@ -34,7 +34,7 @@ solutions = [
   {  
      "managed": False,  
      "name": "src",  
-     "url": "https://github.com/open-webrtc-toolkit/owt-client-native.git",  
+     "url": "https://github.com/inviu/owt-client-native.git",  
      "custom_deps": {},  
      "deps_file": "DEPS",  
      "safesync_url": "",  
