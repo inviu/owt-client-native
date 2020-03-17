@@ -476,7 +476,7 @@ void ConferenceClient::Subscribe(
   PeerConnectionChannelConfiguration config =
       GetPeerConnectionChannelConfiguration();
   for (auto codec : options.video.codecs) {
-    config.video.push_back(VideoEncodingParameters(codec, 0, false));
+    config.video.push_back(VideoEncodingParameters(codec, 0, 0, false));
   }
   for (auto codec : options.audio.codecs) {
     config.audio.push_back(AudioEncodingParameters(codec, 0));

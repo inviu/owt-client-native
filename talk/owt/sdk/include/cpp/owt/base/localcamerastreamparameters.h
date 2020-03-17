@@ -53,6 +53,7 @@ class LocalCameraStreamParameters final {
   void Fps(int fps);
 
   void SetDownScaleEnalbe(bool enable);//plus added
+  void SetMinFramerate(int min_framerate);
   /** @cond */
   std::string CameraId() const { return camera_id_; }
   std::string StreamName() const { return stream_name_; }
@@ -62,6 +63,7 @@ class LocalCameraStreamParameters final {
   bool VideoEnabled() const { return video_enabled_; }
   bool AudioEnabled() const { return audio_enabled_; }
   bool DownScaleEnalbe() const { return isDownScaleEnalbe_; }//plus added
+  int MinFramerate() const { return min_framerate_; } // plus added
   /** @endcond */
  private:
   std::string camera_id_;
@@ -69,6 +71,7 @@ class LocalCameraStreamParameters final {
   int resolution_width_;
   int resolution_height_;
   int fps_;
+  int min_framerate_;//plus added
   bool video_enabled_;
   bool audio_enabled_;
   bool isDownScaleEnalbe_;//plus added

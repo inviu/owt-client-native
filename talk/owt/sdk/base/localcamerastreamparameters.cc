@@ -10,6 +10,7 @@ LocalCameraStreamParameters::LocalCameraStreamParameters(bool audio_enabled,
     : resolution_width_(320),
       resolution_height_(240),
       fps_(30),
+      min_framerate_(0),
       video_enabled_(video_enabled),
       audio_enabled_(audio_enabled),
       isDownScaleEnalbe_(true){
@@ -23,6 +24,10 @@ void LocalCameraStreamParameters::Fps(int fps) {
 void LocalCameraStreamParameters::SetDownScaleEnalbe(bool enable)
 {//plus added
     isDownScaleEnalbe_ = enable;
+}
+void LocalCameraStreamParameters::SetMinFramerate(int min_framerate)
+{//plus added
+    min_framerate_ = min_framerate;
 }
 void LocalCameraStreamParameters::CameraId(const std::string& camera_id) {
   camera_id_ = camera_id;

@@ -32,7 +32,7 @@ void CameraVideoCapturer::OnFrame(const webrtc::VideoFrame& frame) {
 
   if (!video_adapter_.AdaptFrameResolution(
           frame.width(), frame.height(), frame.timestamp_us() * 1000,
-          &cropped_width, &cropped_height, &out_width, &out_height)) {
+          &cropped_width, &cropped_height, &out_width, &out_height, min_framerate_)) {
     // Drop frame in order to respect frame rate constraint.
     return;
   }
@@ -81,6 +81,11 @@ void CameraVideoCapturer::RemoveSink(
 void CameraVideoCapturer::SetDownScaleEnalbe(bool enable)//plus added
 {
     isDownScaleEnalbe_ = enable;
+}
+
+void CameraVideoCapturer::SetMinFramerate(int min_framerate)
+{
+    min_framerate_ = min_framerate;
 }
 
 void CameraVideoCapturer::UpdateVideoAdapter() {

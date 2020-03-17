@@ -33,6 +33,7 @@ class CameraVideoCapturer : public rtc::VideoSourceInterface<webrtc::VideoFrame>
   void RemoveSink(rtc::VideoSinkInterface<webrtc::VideoFrame>* sink) override;
 
   void SetDownScaleEnalbe(bool enable);//plus added
+  void SetMinFramerate(int min_framerate);
  protected:
   void OnFrame(const webrtc::VideoFrame& frame);
   rtc::VideoSinkWants GetSinkWants();
@@ -45,6 +46,7 @@ class CameraVideoCapturer : public rtc::VideoSourceInterface<webrtc::VideoFrame>
 
   //plus added
   bool isDownScaleEnalbe_;
+  int min_framerate_;
 };
 }  // namespace base
 }  // namespace owt

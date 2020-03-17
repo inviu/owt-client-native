@@ -82,6 +82,14 @@ void PeerConnectionChannel::ApplyBitrateSettings() {
                 absl::optional<int>(configuration_.video[0].max_bitrate * 1024);
             sender->SetParameters(rtp_parameters);
           }
+
+          if (configuration_.video.size() > 0 &&
+              configuration_.video[0].min_bitrate > 0) {
+              rtp_parameters.encodings[idx].min_bitrate_bps =
+                  absl::optional<int>(configuration_.video[0].min_bitrate * 1024);
+              sender->SetParameters(rtp_parameters);
+          }
+
         }
       }
     }

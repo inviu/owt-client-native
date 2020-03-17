@@ -121,19 +121,22 @@ struct VideoCodecParameters {
 /// publishing the video.
 struct VideoEncodingParameters {
   explicit VideoEncodingParameters()
-      : codec(), max_bitrate(0), hardware_accelerated(false) {}
+      : codec(), max_bitrate(0), min_bitrate(0), hardware_accelerated(false) {}
   /// Construct an instance of VideoEncodingParameters
   VideoEncodingParameters(const VideoCodecParameters& codec_param,
-                          unsigned long bitrate_bps,
+                          unsigned long max_bitrate_bps,
+                          unsigned long min_bitrate_bps,//plus added
                           bool hw)
       : codec(codec_param),
-        max_bitrate(bitrate_bps),
+        max_bitrate(max_bitrate_bps),
+        min_bitrate(min_bitrate_bps),
         hardware_accelerated(hw) {}
   VideoEncodingParameters(const VideoEncodingParameters& aep) = default;
   VideoEncodingParameters& operator=(const VideoEncodingParameters&) = default;
   VideoCodecParameters codec;
   std::vector<RtpEncodingParameters> rtp_encoding_parameters;
   unsigned long max_bitrate;
+  unsigned long min_bitrate;//plus added
   bool hardware_accelerated;
 };
 /// Audio source info.
