@@ -11,8 +11,28 @@
 using namespace rtc;
 namespace owt {
 namespace base {
-std::vector<std::string> DeviceUtils::VideoCapturerIds() {
-  std::vector<std::string> device_ids;
+// std::vector<std::string> DeviceUtils::VideoCapturerIds() {
+//   std::vector<std::string> device_ids;
+//   std::unique_ptr<webrtc::VideoCaptureModule::DeviceInfo> info(
+//       webrtc::VideoCaptureFactory::CreateDeviceInfo());
+//   if (!info) {
+//     RTC_LOG(LS_ERROR) << "CreateDeviceInfo failed";
+//   } else {
+//     int num_devices = info->NumberOfDevices();
+//     for (int i = 0; i < num_devices; ++i) {
+//       const uint32_t kSize = 256;
+//       char name[kSize] = {0};
+//       char id[kSize] = {0};
+//       if (info->GetDeviceName(i, name, kSize, id, kSize) != -1) {
+//         device_ids.push_back(id);
+//       }
+//     }
+//   }
+//   return device_ids;
+// }
+
+std::vector<DeviceUtils::DevInfo> DeviceUtils::VideoCapturerInfos() {
+  std::vector<DeviceUtils::DevInfo> device_infos;
   std::unique_ptr<webrtc::VideoCaptureModule::DeviceInfo> info(
       webrtc::VideoCaptureFactory::CreateDeviceInfo());
   if (!info) {
@@ -24,11 +44,11 @@ std::vector<std::string> DeviceUtils::VideoCapturerIds() {
       char name[kSize] = {0};
       char id[kSize] = {0};
       if (info->GetDeviceName(i, name, kSize, id, kSize) != -1) {
-        device_ids.push_back(id);
+        device_infos.emplace_back(id,name);
       }
     }
   }
-  return device_ids;
+  return device_infos;
 }
 
 int DeviceUtils::GetVideoCaptureDeviceIndex(const std::string& id) {

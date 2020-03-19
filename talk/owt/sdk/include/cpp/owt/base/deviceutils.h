@@ -11,7 +11,17 @@ namespace base {
 class DeviceUtils {
  public:
   /// Get video capturer IDs.
-  static std::vector<std::string> VideoCapturerIds();
+  // static std::vector<std::string> VideoCapturerIds();
+
+  struct DevInfo {
+    DevInfo(std::string utf8ID,std::string utf8Name) {
+      this->utf8ID=utf8ID;
+      this->utf8Name=utf8Name;
+    }
+    std::string utf8ID;
+    std::string utf8Name;
+  };
+  static std::vector<DevInfo> VideoCapturerInfos();
   /**
    Get supported resolutions for a specific video capturer.
    @param id The ID of specific video capturer.
