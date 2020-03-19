@@ -909,7 +909,7 @@ void ConferencePeerConnectionChannel::SendPublishMessage(
         for (const auto track : stream->MediaStream()->GetAudioTracks()) {
           webrtc::RtpTransceiverInit transceiver_init;
           transceiver_init.stream_ids.push_back(stream->MediaStream()->id());
-          transceiver_init.direction = webrtc::RtpTransceiverDirection::kSendOnly;
+          transceiver_init.direction = webrtc::RtpTransceiverDirection::kSendRecv;//aoqi change
           AddTransceiver(track, transceiver_init);
         }
         for (const auto track : stream->MediaStream()->GetVideoTracks()) {
